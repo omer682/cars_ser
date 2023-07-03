@@ -1,0 +1,21 @@
+password,username,first_name,last_name,person_id,email,city,age,phone_number
+pass123,user1,John,Doe,79365428,johndoe@example.com,New York,30,123456789
+qwerty,user2,Jane,Smith,28679,janesmith@example.com,Los Angeles,25,987654321
+password1,user3,Michael,Johnson,9058234,michaeljohnson@example.com,Chicago,40,456789123
+abc123,user4,Emily,Brown,11234578,emilybrown@example.com,Houston,35,789012345
+hello123,user5,David,Williams,797915463,davidwilliams@example.com,Miami,28,234567890
+test123,user6,Sarah,Jones,9324863,sarahjones@example.com,San Francisco,32,901234567
+pa55w0rd,user7,Christopher,Anderson,16853479,christopheranderson@example.com,Seattle,45,567890123
+admin123,user8,Amanda,Thomas,2586549,amandathomas@example.com,Boston,29,890123456
+securepwd,user9,James,Taylor,75639824,jamestaylor@example.com,Phoenix,33,678901234
+p@ssword,user10,Megan,Harris,87541623,meganharris@example.com,Dallas,38,123456789
+welcome1,user11,Andrew,Martin,4679315,andrewmartin@example.com,Philadelphia,31,890123456
+passw0rd,user12,Sophia,Clark,39526817,sophiaclark@example.com,San Diego,27,345678901
+abcd123,user13,William,Lewis,4829036,williamlewis@example.com,Detroit,42,678901234
+user123,user14,Olivia,Young,581734,oliviayoung@example.com,Atlanta,36,123456789
+testpwd,user15,Joseph,Lee,8735201,josephlee@example.com,Denver,34,901234567
+password123,user16,Abigail,Hall,4128567,abigailhall@example.com,Portland,26,567890123
+pass1234,user17,Elizabeth,Allen,34671589,elizabethallen@example.com,Charlotte,39,234567890
+userpass,user18,Alexander,Wright,97234,alexanderwright@example.com,San Antonio,41,789012345
+example123,user19,Samantha,Lopez,85624,samanthalopez@example.com,Las Vegas,37,456789123
+test1234,user20,Nathan,Hill,94725986,nathanhill@example.com,Orlando,23,123456789

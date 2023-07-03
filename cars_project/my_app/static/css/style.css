@@ -1,0 +1,33 @@
+.options-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #051c33 ;
+  
+}
+
+.left-buttons {
+  display: flex;
+  align-items: center;
+}
+
+.left-buttons img {
+  margin-right: 50px;
+}
+
+.middle-buttons {
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+}
+
+.right-buttons{
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+}
+
+.right-buttons a div button{
+  margin-right: 15px;
+}
