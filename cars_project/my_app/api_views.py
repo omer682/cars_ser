@@ -1,8 +1,13 @@
-from rest_framework.decorators import api_view
+from rest_framework.decorators import api_view, permission_classes, authentication_classes
 from rest_framework.response import Response
 from .models import Rent, Car, Person, ContactUs
 from .serializers import ContactSerializer, PersonSerializer, CarSerializer
 from django.contrib.auth.hashers import make_password
+from rest_framework.authentication import BasicAuthentication, TokenAuthentication
+from rest_framework.permissions import IsAuthenticated
+from rest_framework.authtoken.models import Token
+import base64
+
 
 @api_view(['GET', 'POST'])
 def serve_contactus(request):
@@ -28,6 +33,8 @@ def serve_contactus(request):
             return Response({"status": "not ok", "errors" : contact.errors}, 400)
 
 @api_view(['GET', 'POST', 'PUT'])
+@authentication_classes([TokenAuthentication])
+@permission_classes([IsAuthenticated])
 def serve_person(request):
      if request.method == 'GET':
         has_car = request.query_params.get('has_car', False)
@@ -52,7 +59,8 @@ def serve_person(request):
         if person.is_valid():
             password = person.validated_data.get('password')
             person = person.save(password=make_password(password))
-            return Response('Person added succesfully', 200)
+            token = Token.objects.create(user=person)
+            return Response({f'Person added succesfully id {person.id}'}, 200)
         else:
             return Response({"message":'person wasn"t added', "error": person.errors}, 400)
      elif request.method == 'PUT':
@@ -65,10 +73,14 @@ def serve_person(request):
                 user = PersonSerializer( instance=user, data=request.data, partial=True)
                 if user.is_valid():
                     user.save()
-                    return Response({"status": "ok", "info": "added succesfully"}, 200)
+                    return Response({"status": "ok", "info": "updated succesfully"}, 200)
                 else:
                     return Response({"status":"not ok", "errors": user.errors}, 400)
+            else:
+                return Response({"status":"invalid", "info":"id wasn't specify, add an person id"}, 400)
 @api_view(['GET', 'DELETE', 'PUT', 'POST'])                
+@authentication_classes([TokenAuthentication])
+@permission_classes([IsAuthenticated])
 def serve_car(request):
     try:
         if request.method == 'GET':
@@ -111,3 +123,21 @@ def serve_car(request):
 
     except Exception as e:
         return Response({"status": "Failed", "error": str(e)}, 500)
+    
+@api_view(['GET'])
+@authentication_classes([BasicAuthentication])
+@permission_classes([IsAuthenticated])
+def confidential_ifno(request):
+    return Response('this is private info')
+
+@api_view(['GET'])
+@authentication_classes([BasicAuthentication, TokenAuthentication])
+@permission_classes([IsAuthenticated])
+def private2(request):
+    return Response('you are authurized to see the content')
+@api_view(['DELETE'])
+@authentication_classes([BasicAuthentication, TokenAuthentication])
+@permission_classes([IsAuthenticated])
+def delete_token(request):
+    user = request.user.auth_token.delete()
+    return Response({'status': "ok", "info" : 'deleted', "user deleted": user}, 200)

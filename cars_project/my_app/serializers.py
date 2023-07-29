@@ -9,9 +9,10 @@ class ContactSerializer(serializers.ModelSerializer):
         fields = "__all__"
     
 class PersonSerializer(serializers.ModelSerializer):
+    password = serializers.CharField(write_only=True)
     class Meta:
         model = get_user_model()
-        fields = ['username', 'first_name', 'age']
+        fields = ['username', 'first_name', 'age', 'password']
 
 class CarSerializer(serializers.ModelSerializer):
     owner_personal_id = serializers.SerializerMethodField()
